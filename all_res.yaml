@@ -286,6 +286,8 @@ Resources:
 
   EKSClusterRole:
     Type: 'AWS::IAM::Role'
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Properties:
       RoleName: !Sub 'eks-cluster-role-${AWS::StackName}'
       AssumeRolePolicyDocument:
@@ -318,6 +320,8 @@ Resources:
 
   EKSNodeGroupRole:
     Type: 'AWS::IAM::Role'
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Properties:
       RoleName: !Sub 'eks-nodegroup-role-${AWS::StackName}'
       AssumeRolePolicyDocument:

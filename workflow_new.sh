@@ -139,5 +139,17 @@ KEY_ID=$(./ksctl-linux-amd64 keys create -j createkey.json --url $URL --user $US
 ./ksctl-linux-amd64 data-protection protection-policies create --url $URL --user $USER --password $PASSWORD $NO_SSL_VERIFY --algorithm "FPE/AES/UNICODE" --key "FPEKey" --access-policy-name AP01 --character-set-id "$CHARACTER_SET_ID_1" --disable-versioning --tweak 1234567812346578 --tweak-algorithm SHA256 --name PPol1
 ./ksctl-linux-amd64 data-protection protection-policies create --url $URL --user $USER --password $PASSWORD $NO_SSL_VERIFY --algorithm "FPE/AES/UNICODE" --key "FPEKey" --access-policy-name AP01 --character-set-id "$CHARACTER_SET_ID_2" --disable-versioning --tweak 1234567812346578 --tweak-algorithm SHA256 --name PPol2
 
+# Create K8s resources
+kubectl apply -f k8-configmap.yaml
+kubectl apply -f regcred.yaml
+kubectl apply -f k8-deployment.yaml
+kubectl get all
+echo
+# Retrieve the external IP of the webapp-service and print it with http:// in the beginning
+WEBAPP_URL="http://$(kubectl get service webapp-service -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')"
+echo -e "Access the CRDP Demo App at the URL below"
+echo $WEBAPP_URL
+
+
 echo "Script execution completed."
 

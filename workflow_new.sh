@@ -1,8 +1,14 @@
 #!/bin/bash
 
-# Prompt user for password
-read -sp "Enter password for admin user: " PASSWORD
-echo
+# Prompt user for password and confirm
+while true; do
+    read -sp "Enter password for admin user: " PASSWORD
+    echo
+    read -sp "Confirm password for admin user: " PASSWORD_CONFIRM
+    echo
+    [ "$PASSWORD" = "$PASSWORD_CONFIRM" ] && break
+    echo "Passwords do not match. Please try again."
+done
 
 # Define common variables
 USER="admin"

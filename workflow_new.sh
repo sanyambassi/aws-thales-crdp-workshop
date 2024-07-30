@@ -40,7 +40,7 @@ chmod +x ksctl-linux-amd64
 ./ksctl-linux-amd64 changepw -n $PASSWORD -c $PASSWORD --user $USER --password admin --url $URL  $NO_SSL_VERIFY
 
 # Create character sets
-CHARACTER_SET_ID_1=$(./ksctl-linux-amd64 data-protection character-sets create --name "all alpha" --range 0041-005A,0061-007A --user $USER --password $PASSWORD $NO_SSL_VERIFY --url $URL | jq -r '.id')
+CHARACTER_SET_ID_1=$(./ksctl-linux-amd64 data-protection character-sets create --name "All Alphabets" --range 0041-005A,0061-007A --user $USER --password $PASSWORD $NO_SSL_VERIFY --url $URL | jq -r '.id')
 
 # List character sets and extract the required ID for PPol2
 CHARACTER_SET_ID_2=$(./ksctl-linux-amd64 data-protection character-sets list --url $URL --user $USER $NO_SSL_VERIFY --password $PASSWORD | jq -r '.resources[] | select(.name == "All digits") | .id')

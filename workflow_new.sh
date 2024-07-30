@@ -51,7 +51,7 @@ output=$(./ksctl-linux-amd64 data-protection client-profiles create --app-connec
 reg_token=$(echo "$output" | jq -r '.reg_token')
 
 # Update Kubernetes config
-CLUSTER_NAME=$(aws cloudformation describe-stacks --stack-name $STACK_NAME --query "Stacks[0].Outputs[?OutputKey=='ClusterName'].OutputValue" --output text)
+CLUSTER_NAME=$(aws cloudformation describe-stacks --stack-name $STACK_NAME --query "Stacks[0].Outputs[?OutputKey=='EKSClusterName'].OutputValue" --output text)
 aws eks update-kubeconfig --region $REGION --name $CLUSTER_NAME
 
 # Create Kubernetes secret with reg_token
@@ -61,7 +61,7 @@ kubectl create secret generic regtoken --from-literal=reg_token="$reg_token"
 USER_SET_ID_1=$(./ksctl-linux-amd64 data-protection user-sets create --name US_App_Generic_User --users app_generic_user --user $USER --password $PASSWORD $NO_SSL_VERIFY --url $URL | jq -r '.id')
 USER_SET_ID_2=$(./ksctl-linux-amd64 data-protection user-sets create --name US_App_Super_User --users app_super_user --user $USER --password $PASSWORD $NO_SSL_VERIFY --url $URL | jq -r '.id')
 USER_SET_ID_3=$(./ksctl-linux-amd64 data-protection user-sets create --name US_App_User_Last4 --users app_user_last4 --user $USER --password $PASSWORD $NO_SSL_VERIFY --url $URL | jq -r '.id')
-USER_SET_ID_4=$(./ksctl-linux-amd64 data-protection user-sets create --name US_App_User_Last6 --users app_user_last6 --user $USER --password $PASSWORD $NO_SSL_VERIFY --url $URL | jq -r '.id')
+USER_SET_ID_4=$(./ksctl-linux-amd64 data-protection user-sets create --name US_App_User_First2_Last4 --users app_user_first2_last4 --user $USER --password $PASSWORD $NO_SSL_VERIFY --url $URL | jq -r '.id')
 
 # List masking formats and extract required IDs
 MASKING_FORMAT_ID_1=$(./ksctl-linux-amd64 data-protection masking-formats list --url $URL --user $USER --password $PASSWORD $NO_SSL_VERIFY | jq -r '.resources[] | select(.name == "SHOW_LAST_FOUR") | .id')

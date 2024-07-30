@@ -287,7 +287,7 @@ Resources:
   EKSClusterRole:
     Type: 'AWS::IAM::Role'
     Properties:
-      RoleName: 'aws-workshop-eks-cluster-role'
+      RoleName: !Sub 'aws-workshop-eks-cluster-role-${AWS::StackName}'
       AssumeRolePolicyDocument:
         Version: '2012-10-17'
         Statement:
@@ -319,7 +319,7 @@ Resources:
   EKSNodeGroupRole:
     Type: 'AWS::IAM::Role'
     Properties:
-      RoleName: 'aws-workshop-eks-nodegroup-role'
+      RoleName: !Sub 'aws-workshop-eks-nodegroup-role-${AWS::StackName}'
       AssumeRolePolicyDocument:
         Version: '2012-10-17'
         Statement:

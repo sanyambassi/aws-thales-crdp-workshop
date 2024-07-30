@@ -19,8 +19,7 @@ echo "Waiting for stack to be created..."
 aws cloudformation wait stack-create-complete --stack-name $STACK_NAME
 
 # Retrieve the public IP of the EC2 instance
-INSTANCE_ID=$(aws cloudformation describe-stack-resources --stack-name $STACK_NAME --query "StackResources[?ResourceType=='AWS::EC2::Instance'].PhysicalResourceId" --output text)
-PUBLIC_IP=$(aws ec2 describe-instances --instance-ids $INSTANCE_ID --query "Reservations[*].Instances[*].PublicIpAddress" --output text)
+PUBLIC_IP=$(aws cloudformation describe-stacks --stack-name $STACK_NAME --query  "Stacks[0].Outputs[?OutputKey=='PublicIPAddress'].OutputValue" --output text)
 
 # Define the URL with the retrieved public IP
 URL="https://$PUBLIC_IP"

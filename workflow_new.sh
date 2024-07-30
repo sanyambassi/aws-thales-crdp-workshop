@@ -8,7 +8,7 @@ echo
 USER="admin"
 NO_SSL_VERIFY="--nosslverify"
 STACK_NAME="aws-thales-crdp-workshop"
-TEMPLATE_FILE="crdp-workshop/all_res.yaml" # Update this path to your CloudFormation template
+TEMPLATE_FILE="/home/cloudshell-user/crdp-workshop/all_res.yaml" # Update this path to your CloudFormation template
 REGION="us-east-1"
 
 # Create CloudFormation stack

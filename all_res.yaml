@@ -286,10 +286,8 @@ Resources:
 
   EKSClusterRole:
     Type: 'AWS::IAM::Role'
-    DeletionPolicy: Retain
-    UpdateReplacePolicy: Retain
     Properties:
-      RoleName: !Sub 'eks-cluster-role-${AWS::StackName}'
+      RoleName: 'aws-workshop-eks-cluster-role'
       AssumeRolePolicyDocument:
         Version: '2012-10-17'
         Statement:
@@ -307,7 +305,7 @@ Resources:
   EKSCluster:
     Type: 'AWS::EKS::Cluster'
     Properties:
-      Name: !Sub 'eks-cluster-${AWS::StackName}'
+      Name: 'aws-workshop-eks-cluster'
       RoleArn: !GetAtt 'EKSClusterRole.Arn'
       ResourcesVpcConfig:
         SubnetIds:
@@ -320,10 +318,8 @@ Resources:
 
   EKSNodeGroupRole:
     Type: 'AWS::IAM::Role'
-    DeletionPolicy: Retain
-    UpdateReplacePolicy: Retain
     Properties:
-      RoleName: !Sub 'eks-nodegroup-role-${AWS::StackName}'
+      RoleName: 'aws-workshop-eks-nodegroup-role'
       AssumeRolePolicyDocument:
         Version: '2012-10-17'
         Statement:
@@ -343,7 +339,7 @@ Resources:
     Type: 'AWS::EKS::Nodegroup'
     Properties:
       ClusterName: !Ref 'EKSCluster'
-      NodegroupName: !Sub 'eks-nodegroup-${AWS::StackName}'
+      NodegroupName: 'aws-workshop-eks-nodegroup'
       NodeRole: !GetAtt 'EKSNodeGroupRole.Arn'
       Subnets:
         - !Ref PrivateSubnet01

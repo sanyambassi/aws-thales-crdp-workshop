@@ -12,7 +12,7 @@ TEMPLATE_FILE="/home/cloudshell-user/crdp-workshop/all_res.yaml" # Update this p
 REGION="us-east-1"
 
 # Create CloudFormation stack
-aws cloudformation create-stack --stack-name $STACK_NAME --template-body file://$TEMPLATE_FILE
+aws cloudformation create-stack --stack-name $STACK_NAME --template-body file://$TEMPLATE_FILE --capabilities CAPABILITY_IAM CAPABILITY_NAMED_IAM
 
 # Wait for stack to be created
 echo "Waiting for stack to be created..."

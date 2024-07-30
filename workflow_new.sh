@@ -14,8 +14,10 @@ done
 USER="admin"
 NO_SSL_VERIFY="--nosslverify"
 STACK_NAME="aws-thales-crdp-workshop"
-TEMPLATE_FILE="/home/cloudshell-user/crdp-workshop/all_res.yaml" # Update this path to your CloudFormation template
+TEMPLATE_FILE="/home/cloudshell-user/crdp-workshop/all_res.yaml"
 REGION="us-east-1"
+K8_DEPLOYMENT_FILE="/home/cloudshell-user/crdp-workshop/k8-deployment.yaml"
+
 
 # Create CloudFormation stack
 aws cloudformation create-stack --stack-name $STACK_NAME --template-body file://$TEMPLATE_FILE --capabilities CAPABILITY_IAM CAPABILITY_NAMED_IAM
@@ -24,8 +26,14 @@ aws cloudformation create-stack --stack-name $STACK_NAME --template-body file://
 echo "Waiting for stack to be created..."
 aws cloudformation wait stack-create-complete --stack-name $STACK_NAME
 
-# Retrieve the public IP of the EC2 instance
+# Retrieve the public IP of the CipherTrust Manager
 PUBLIC_IP=$(aws cloudformation describe-stacks --stack-name $STACK_NAME --query  "Stacks[0].Outputs[?OutputKey=='PublicIPAddress'].OutputValue" --output text)
+
+# Retrieve the private IP of the CipherTrust Manager
+PRIVATE_IP=$(aws cloudformation describe-stacks --stack-name $STACK_NAME --query "Stacks[0].Outputs[?OutputKey=='InstancePrivateIp'].OutputValue" --output text)
+
+# Update k8-deployment.yaml with the private IP
+sed -i "s/value: \"192.168.31.52\"/value: \"$PRIVATE_IP\"/" $K8_DEPLOYMENT_FILE
 
 # Define the URL with the retrieved public IP
 URL="https://$PUBLIC_IP"

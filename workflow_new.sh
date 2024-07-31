@@ -20,7 +20,7 @@ K8_DEPLOYMENT_FILE="$PWD/k8-deployment.yaml" # Updated path to the working direc
 
 
 # Create CloudFormation stack
-aws cloudformation create-stack --stack-name $STACK_NAME --template-body file://$TEMPLATE_FILE --capabilities CAPABILITY_IAM CAPABILITY_NAMED_IAM
+aws cloudformation create-stack --stack-name $STACK_NAME --template-body file://$TEMPLATE_FILE --capabilities CAPABILITY_IAM CAPABILITY_NAMED_IAM --region $REGION
 
 # Wait for stack to be created
 echo "Waiting for stack to be created..."

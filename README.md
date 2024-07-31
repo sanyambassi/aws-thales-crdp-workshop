@@ -28,7 +28,7 @@ Before running the script, ensure you have the following:
 
 1. Clone this repository:
     ```sh
-    git clone https://github.com/your-username/aws-thales-crdp-workshop.git
+    git clone https://github.com/sanyambassi/aws-thales-crdp-workshop.git
     cd aws-thales-crdp-workshop
     ```
 
@@ -36,12 +36,12 @@ Before running the script, ensure you have the following:
 
 3. Make the script executable:
     ```sh
-    chmod +x setup.sh
+    chmod +x launchWorkshop.sh
     ```
 
 4. Run the script:
     ```sh
-    ./setup.sh
+    ./launchWorkshop.sh
     ```
 
 ## Script Breakdown

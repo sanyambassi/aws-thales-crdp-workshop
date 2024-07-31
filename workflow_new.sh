@@ -14,9 +14,9 @@ done
 USER="admin"
 NO_SSL_VERIFY="--nosslverify"
 STACK_NAME="aws-thales-crdp-workshop"
-TEMPLATE_FILE="/home/cloudshell-user/crdp-workshop/all_res.yaml"
+TEMPLATE_FILE="$PWD/all_res.yaml" # Updated path to the working directory
 REGION="us-east-1"
-K8_DEPLOYMENT_FILE="/home/cloudshell-user/crdp-workshop/k8-deployment.yaml"
+K8_DEPLOYMENT_FILE="$PWD/k8-deployment.yaml" # Updated path to the working directory
 
 
 # Create CloudFormation stack

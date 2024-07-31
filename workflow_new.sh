@@ -60,7 +60,7 @@ CHARACTER_SET_ID_1=$(./ksctl-linux-amd64 data-protection character-sets create -
 CHARACTER_SET_ID_2=$(./ksctl-linux-amd64 data-protection character-sets list --url $URL --user $USER $NO_SSL_VERIFY --password $PASSWORD | jq -r '.resources[] | select(.name == "All digits") | .id')
 
 # Create client profile and extract reg_token
-output=$(./ksctl-linux-amd64 data-protection client-profiles create --app-connector-type CRDP --name CRDP_Demo_1 --url $URL --user $USER --password "$PASSWORD" $NO_SSL_VERIFY --csr-parameters '{"csr_cn":"crdpviaksctl"}' --configurations '{"log_level":"INFO","heartbeat_interval":30}')
+output=$(./ksctl-linux-amd64 data-protection client-profiles create --app-connector-type CRDP --name CRDP_Demo_App --url $URL --user $USER --password "$PASSWORD" $NO_SSL_VERIFY --csr-parameters '{"csr_cn":"crdpviaksctl"}' --configurations '{"log_level":"INFO","heartbeat_interval":30}')
 
 reg_token=$(echo "$output" | jq -r '.reg_token')
 

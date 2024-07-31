@@ -15,7 +15,7 @@ echo "Passwords confirmed."
 USER="admin"
 NO_SSL_VERIFY="--nosslverify"
 STACK_NAME="aws-thales-crdp-workshop"
-TEMPLATE_FILE="$PWD/all_res.yaml"
+TEMPLATE_FILE="$PWD/cloud_formation_template.yaml"
 REGION="us-east-1"
 K8_DEPLOYMENT_FILE="$PWD/k8-deployment.yaml" 
 

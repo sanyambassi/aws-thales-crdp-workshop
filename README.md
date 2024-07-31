@@ -1,22 +1,20 @@
 # AWS Thales CRDP Workshop Setup Script
 
-This repository contains a bash script to automate the deployment and configuration of Thales CipherTrust Manager and Amazon Elastic Kubernetes Service (Amazon EKS) in AWS and the associated resources using CloudFormation.
+This repository contains a bash script to automate the deployment and configuration of Thales CipherTrust Manager and Amazon Elastic Kubernetes Service (Amazon EKS) and the associated resources using CloudFormation in AWS.
 
 ## Overview
 
 The script performs the following actions:
 
-1. Resets the CipherTrust Manager admin user's password to a user supplied password.
-2. Creates a CloudFormation stack based on the provided template.
-3. Retrieves the public and private IP addresses of the CipherTrust Manager from the CloudFormation stack.
-4. Updates the Kubernetes deployment file with the retrieved private IP address.
-5. Downloads and configures the `ksctl` binaries.
-6. Changes the default password for the CipherTrust Manager admin user.
-7. Activates a trial license.
-8. Creates character sets and user sets.
-9. Generates and applies Kubernetes configurations, secrets, and resources.
-10. Waits for the Kubernetes service to be assigned an external IP address.
-11. Prints the access URLs for the CRDP Demo App and the CipherTrust Manager.
+1. Creates a CloudFormation stack based on the provided template.
+2. Retrieves the public and private IP addresses of the CipherTrust Manager from the CloudFormation stack.
+3. Updates the Kubernetes deployment file with the retrieved private IP address.
+4. Downloads and configures the `ksctl` binaries.
+5. Changes the default password for the CipherTrust Manager admin user to a user supplied password.
+6. Activates the trial license on CipherTrust manager.
+7. Creates required resources for CRDP, including user sets, access policies and protection policies, on the CipherTrust manager.
+8. Generates and applies Kubernetes configurations, secrets, and resources.
+9. Prints the access URLs for the CRDP Demo App and the CipherTrust Manager.
 
 ## Prerequisites
 
@@ -25,8 +23,6 @@ Before running the script, ensure you have the following:
 1. AWS CLI configured with the appropriate permissions.
 2. Kubernetes CLI (`kubectl`) installed and configured.
 3. `jq` command-line JSON processor installed.
-4. A CloudFormation template file (`all_res.yaml`) for creating the necessary AWS resources.
-5. Kubernetes deployment file (`k8-deployment.yaml`) to be updated with the private IP of the CipherTrust Manager.
 
 ## Usage
 

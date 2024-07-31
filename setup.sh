@@ -13,9 +13,10 @@ done
 # Define common variables
 USER="admin"
 NO_SSL_VERIFY="--nosslverify"
-STACK_NAME="aws-thales-crdp-workshop-west"
+STACK_NAME="aws-thales-crdp-workshop"
 TEMPLATE_FILE="$PWD/all_res.yaml" # Updated path to the working directory
 REGION="us-east-1"
+K8_DEPLOYMENT_FILE="$PWD/k8-deployment.yaml" # Updated path to the working directory
 
 # Create CloudFormation stack
 aws cloudformation create-stack --stack-name $STACK_NAME --template-body file://$TEMPLATE_FILE --capabilities CAPABILITY_IAM CAPABILITY_NAMED_IAM --region $REGION
@@ -35,10 +36,11 @@ echo "Public IP: $PUBLIC_IP"
 echo "Private IP: $PRIVATE_IP"
 
 # Update k8-deployment.yaml with the private IP
-sed -i "/name: KEY_MANAGER_HOST/{n;s/value:.*/value: \"$PRIVATE_IP\"/}" k8-deployment.yaml
+sed -i "/name: KEY_MANAGER_HOST/{n;s/value:.*/value: \"$PRIVATE_IP\"/}" $K8_DEPLOYMENT_FILE
 
 # Debug: Check if the file has been updated
-grep -A 1 "name: KEY_MANAGER_HOST" k8-deployment.yaml
+echo -e "Verify if the deployment manifest has been updated"
+grep -A 1 "name: KEY_MANAGER_HOST" $K8_DEPLOYMENT_FILE
 
 # Define the URL with the retrieved public IP
 URL="https://$PUBLIC_IP"
@@ -153,7 +155,7 @@ KEY_ID=$(./ksctl-linux-amd64 keys create -j createkey.json --url $URL --user $US
 # Create K8s resources
 kubectl apply -f k8-configmap.yaml
 kubectl apply -f regcred.yaml
-kubectl apply -f k8-deployment.yaml
+kubectl apply -f $K8_DEPLOYMENT_FILE
 kubectl get all
 echo
 

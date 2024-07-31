@@ -151,11 +151,25 @@ kubectl apply -f regcred.yaml
 kubectl apply -f k8-deployment.yaml
 kubectl get all
 echo
-# Retrieve the external IP of the webapp-service and print it with http:// in the beginning
-WEBAPP_URL="http://$(kubectl get service webapp-service -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')"
+
+# Wait until the external IP is assigned to the webapp-service
+while true; do
+    EXTERNAL_IP=$(kubectl get service webapp-service -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')
+    if [ -n "$EXTERNAL_IP" ]; then
+        break
+    fi
+    echo "Waiting for the external IP to be assigned..."
+    sleep 10
+done
+
+# Retrieve and print the external IP of the webapp-service
+WEBAPP_URL="http://$EXTERNAL_IP"
+echo "External IP of the webapp-service: $WEBAPP_URL"
 echo -e "Access the CRDP Demo App at the URL below"
 echo $WEBAPP_URL
-
-
+echo
+echo -e "Access the CipherTrust Manager at the URL below"
+echo $URL
+echo
 echo "Script execution completed."
 

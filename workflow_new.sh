@@ -47,6 +47,12 @@ chmod +x ksctl-linux-amd64
 # Change admin user's default password
 ./ksctl-linux-amd64 changepw -n $PASSWORD -c $PASSWORD --user $USER --password admin --url $URL  $NO_SSL_VERIFY
 
+# Get trial license ID
+TRIAL_ID=$(./ksctl-linux-amd64 licensing trials list --url $URL --user $USER --nosslverify --password $PASSWORD | jq -r '.resources[0].id')
+
+# Activate the trial
+./ksctl-linux-amd64 licensing trials activate --id $TRIAL_ID --url $URL --user $USER --nosslverify --password $PASSWORD
+
 # Create character sets
 CHARACTER_SET_ID_1=$(./ksctl-linux-amd64 data-protection character-sets create --name "All Alphabets" --range 0041-005A,0061-007A --user $USER --password $PASSWORD $NO_SSL_VERIFY --url $URL | jq -r '.id')
 

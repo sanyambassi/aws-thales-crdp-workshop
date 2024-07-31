@@ -24,13 +24,13 @@ aws cloudformation create-stack --stack-name $STACK_NAME --template-body file://
 
 # Wait for stack to be created
 echo "Waiting for stack to be created..."
-aws cloudformation wait stack-create-complete --stack-name $STACK_NAME
+aws cloudformation wait stack-create-complete --stack-name $STACK_NAME --region $REGION
 
 # Retrieve the public IP of the CipherTrust Manager
-PUBLIC_IP=$(aws cloudformation describe-stacks --stack-name $STACK_NAME --query  "Stacks[0].Outputs[?OutputKey=='PublicIPAddress'].OutputValue" --output text)
+PUBLIC_IP=$(aws cloudformation describe-stacks --stack-name $STACK_NAME --region $REGION --query  "Stacks[0].Outputs[?OutputKey=='PublicIPAddress'].OutputValue" --output text)
 
 # Retrieve the private IP of the CipherTrust Manager
-PRIVATE_IP=$(aws cloudformation describe-stacks --stack-name $STACK_NAME --query "Stacks[0].Outputs[?OutputKey=='InstancePrivateIp'].OutputValue" --output text)
+PRIVATE_IP=$(aws cloudformation describe-stacks --stack-name $STACK_NAME --region $REGION --query "Stacks[0].Outputs[?OutputKey=='InstancePrivateIp'].OutputValue" --output text)
 
 # Update k8-deployment.yaml with the private IP
 sed -i "/name: KEY_MANAGER_HOST/{n;s/value:.*/value: $PRIVATE_IP/}" $K8S_DEPLOYMENT_FILE
@@ -65,7 +65,7 @@ output=$(./ksctl-linux-amd64 data-protection client-profiles create --app-connec
 reg_token=$(echo "$output" | jq -r '.reg_token')
 
 # Update Kubernetes config
-CLUSTER_NAME=$(aws cloudformation describe-stacks --stack-name $STACK_NAME --query "Stacks[0].Outputs[?OutputKey=='EKSClusterName'].OutputValue" --output text)
+CLUSTER_NAME=$(aws cloudformation describe-stacks --stack-name $STACK_NAME --region $REGION --query "Stacks[0].Outputs[?OutputKey=='EKSClusterName'].OutputValue" --output text)
 aws eks update-kubeconfig --region $REGION --name $CLUSTER_NAME
 
 # Create Kubernetes secret with reg_token

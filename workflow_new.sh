@@ -33,7 +33,7 @@ PUBLIC_IP=$(aws cloudformation describe-stacks --stack-name $STACK_NAME --query 
 PRIVATE_IP=$(aws cloudformation describe-stacks --stack-name $STACK_NAME --query "Stacks[0].Outputs[?OutputKey=='InstancePrivateIp'].OutputValue" --output text)
 
 # Update k8-deployment.yaml with the private IP
-sed -i "s/value: \$/value: $PRIVATE_IP/" $K8S_DEPLOYMENT_FILE
+sed -i "/name: KEY_MANAGER_HOST/{n;s/value:.*/value: $PRIVATE_IP/}" $K8S_DEPLOYMENT_FILE
 
 # Define the URL with the retrieved public IP
 URL="https://$PUBLIC_IP"

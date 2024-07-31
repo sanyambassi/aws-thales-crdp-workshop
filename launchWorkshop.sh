@@ -187,8 +187,9 @@ echo "Creating Kubernetes resources..."
 kubectl apply -f k8-configmap.yaml
 kubectl apply -f regcred.yaml
 kubectl apply -f $K8_DEPLOYMENT_FILE
-kubectl get all
 echo "Kubernetes resources created successfully."
+echo "Geting Kubernetes resources."
+kubectl get all
 
 # Wait until the external IP is assigned to the webapp-service
 echo "Waiting for the external IP to be assigned to the webapp-service..."

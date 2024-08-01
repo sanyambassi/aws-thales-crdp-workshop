@@ -48,11 +48,11 @@ Before running the script, ensure you have the following:
 
 ### Password Prompt
 
-The script prompts the user to enter and confirm the password for the CipherTrust Manager admin user. It ensures the passwords match before proceeding.
+The script prompts the user to enter and confirm the password for the CipherTrust Manager admin user.
 
 ### CloudFormation Stack Creation
 
-The script creates a CloudFormation stack using the provided template file (`all_res.yaml`) and waits for its completion.
+The script creates a CloudFormation stack using the provided template file (`cloud_formation_template.yaml`) and waits for its completion.
 
 ### Retrieve IP Addresses
 
@@ -76,11 +76,11 @@ The script retrieves and activates a trial license for the CipherTrust Manager.
 
 ### Create Character Sets and User Sets
 
-The script creates necessary character sets and user sets for the CipherTrust Manager.
+The script creates necessary character sets and user sets on the CipherTrust Manager to be used with CRDP.
 
 ### Apply Kubernetes Configurations and Resources
 
-The script updates the Kubernetes configuration, creates a secret with the registration token, and applies the provided Kubernetes configurations and resources.
+The script updates the Kubernetes configuration, creates a secret with the registration token, and applies the provided Kubernetes configurations and resources. This creates 2 application pods - one for mysql and another pods with a frontend webapp with Thales CRDP (Ciphertrust RESTful Data Protection) container as sidecar. 
 
 ### Retrieve External IP Address
 

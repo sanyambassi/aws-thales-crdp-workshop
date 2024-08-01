@@ -2,14 +2,14 @@
 
 # Prompt user for password and confirm
 while true; do
-    read -sp "Enter password for CipherTrust Manager's admin user: " PASSWORD
+    read -sp "Create/Enter a new password for CipherTrust Manager's admin user: " PASSWORD
     echo
-    read -sp "Confirm password for the admin user: " PASSWORD_CONFIRM
+    read -sp "Confirm password: " PASSWORD_CONFIRM
     echo
     [ "$PASSWORD" = "$PASSWORD_CONFIRM" ] && break
     echo "Passwords do not match. Please try again."
 done
-echo "Passwords confirmed."
+echo "Passwords match."
 
 # Define common variables
 USER="admin"

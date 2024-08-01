@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: 'Amazon EKS VPC with an EC2 instance and existing key pair, and EKS Cluster with managed node group'
+Description: 'Create AWS VPC, CipherTrust Manager EC2 instance, an Amazon EKS cluster and the associated managed NodeGroup'
 
 Parameters:
   VpcBlock:
@@ -387,11 +387,11 @@ Outputs:
     Value: !Ref EC2Instance
 
   InstancePrivateIp:
-    Description: The private IP address of the instance
+    Description: The Private IP address of the CipherTrust Manager
     Value: !GetAtt EC2Instance.PrivateIp
 
   PublicIPAddress:
-    Description: The Public IP address of the instance
+    Description: The Public IP address of the CipherTrust Manager
     Value: !GetAtt EC2Instance.PublicIp
 
   EKSClusterName:

@@ -80,7 +80,7 @@ echo "Trial license activated successfully."
 echo "Creating a new character set for All alphabets..."
 CHARACTER_SET_ID_1=$(./ksctl-linux-amd64 data-protection character-sets create --name "All Alphabets" --range 0041-005A,0061-007A --user $USER --password $PASSWORD $NO_SSL_VERIFY --url $URL | jq -r '.id')
 
-# List character sets and extract the required ID for PPol2
+# List character sets and extract the  ID for All digits character set
 CHARACTER_SET_ID_2=$(./ksctl-linux-amd64 data-protection character-sets list --url $URL --user $USER $NO_SSL_VERIFY --password $PASSWORD | jq -r '.resources[] | select(.name == "All digits") | .id')
 
 # Create client profile and extract reg_token
@@ -210,10 +210,10 @@ done
 # Retrieve and print the external IP of the webapp-service
 WEBAPP_URL="http://$EXTERNAL_IP"
 
-echo -e "Access the CRDP Demo App at the URL below:"
+echo -e "Access the CRDP Demo App at the URL below (it can take up to 60 seconds for the service to come online):"
 echo $WEBAPP_URL
 echo
 echo -e "Access the CipherTrust Manager at the URL below:"
 echo $URL
 echo
-echo "Script execution completed successfully."
+echo "Workshop launched successfully."

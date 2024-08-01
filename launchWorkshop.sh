@@ -22,7 +22,7 @@ K8_DEPLOYMENT_FILE="$PWD/k8-deployment.yaml"
 # Create a key pair in AWS in us-east-1
 echo "Creating a keypair named ksadmin_cm in AWS us-east-1..."
 aws ec2 create-key-pair --key-name ksadmin_cm --query 'KeyMaterial' --region us-east-1 --output text > ksadmin_cm.pem
-echo "Created a keypair named ksadmin_cm in AWS us-east-1, and downloaded in the working directory."
+echo "Created a keypair named ksadmin_cm in AWS us-east-1, and saved in the current working directory."
 
 # Create CloudFormation stack
 echo "Creating CloudFormation stack..."

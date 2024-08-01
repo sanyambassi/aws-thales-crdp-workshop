@@ -103,7 +103,7 @@ echo "Kubernetes secret created successfully."
 # Create user sets
 echo "Creating user sets..."
 USER_SET_ID_1=$(./ksctl-linux-amd64 data-protection user-sets create --name US_App_Generic_User --users app_generic_user --user $USER --password $PASSWORD $NO_SSL_VERIFY --url $URL | jq -r '.id')
-USER_SET_ID_2=$(./ksctl-linux-amd64 data-protection user-sets create --name US_App_Super_User --users app_super_user --user $USER --password $PASSWORD $NO_SSL_VERIFY --url $URL | jq -r '.id')
+USER_SET_ID_2=$(./ksctl-linux-amd64 data-protection user-sets create --name US_App_Super_User --users app_super_user --users cc_user --users cvv_user --user $USER --password $PASSWORD $NO_SSL_VERIFY --url $URL | jq -r '.id')
 USER_SET_ID_3=$(./ksctl-linux-amd64 data-protection user-sets create --name US_App_User_Last4 --users app_user_last4 --user $USER --password $PASSWORD $NO_SSL_VERIFY --url $URL | jq -r '.id')
 USER_SET_ID_4=$(./ksctl-linux-amd64 data-protection user-sets create --name US_App_User_First2_Last4 --users app_user_first2_last4 --user $USER --password $PASSWORD $NO_SSL_VERIFY --url $URL | jq -r '.id')
 echo "User sets created successfully."

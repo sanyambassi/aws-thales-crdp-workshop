@@ -146,5 +146,5 @@ metadata:
   name: db-secret
 type: Opaque
 data:
-  username: c2FueWFt
-  password: U2VjdXJlUGFzcw==
+  username: ZGVtb3VzZXI=
+  password: RGVtb1Bhc3N3b3Jk

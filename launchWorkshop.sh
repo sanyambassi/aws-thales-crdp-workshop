@@ -19,6 +19,11 @@ TEMPLATE_FILE="$PWD/cloud_formation_template.yaml"
 REGION="us-east-1"
 K8_DEPLOYMENT_FILE="$PWD/k8-deployment.yaml" 
 
+# Create a key pair in AWS in us-east-1
+echo "Creating a keypair named ksadmin_cm in AWS us-east-1..."
+aws ec2 create-key-pair --key-name ksadmin_cm --query 'KeyMaterial' --region us-east-1 --output text > ksadmin_cm.pem
+echo "Created a keypair named ksadmin_cm in AWS us-east-1"
+
 # Create CloudFormation stack
 echo "Creating CloudFormation stack..."
 aws cloudformation create-stack --stack-name $STACK_NAME --template-body file://$TEMPLATE_FILE --capabilities CAPABILITY_IAM CAPABILITY_NAMED_IAM --region $REGION

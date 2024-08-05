@@ -264,7 +264,7 @@ echo
 # Copy the JMX script to the JMeter container
 echo "Copying JMX script to the JMeter container..."
 kubectl cp $JMX_SCRIPT $WEBAPP_POD_NAME:/jmeter/create_jmx_files.sh -c jmeter 2>/dev/null
-echo "JMX file copied successfully."
+echo "JMX script copied successfully."
 echo
 
 # Execute the JMeter test

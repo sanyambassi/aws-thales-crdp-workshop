@@ -350,7 +350,7 @@ Resources:
         DesiredSize: 1
       AmiType: AL2_x86_64
       InstanceTypes:
-        - t3.medium
+        - t3.xlarge
       RemoteAccess:
         Ec2SshKey: !Ref KeyPairName
       Tags:

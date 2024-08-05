@@ -37,6 +37,10 @@ spec:
           value: "localhost"
         - name: CRDP_PORT
           value: "8090"
+        - name: REMOTE_CRDP_HOST
+          value: "srvc"
+        - name: REMOTE_CRDP_PORT
+          value: "8090"
       - name: crdp-container
         image: thalesciphertrust/ciphertrust-restful-data-protection:latest
         imagePullPolicy: IfNotPresent
@@ -56,7 +60,7 @@ spec:
           periodSeconds: 10
         env:
         - name: KEY_MANAGER_HOST
-          value: 
+          value: "192.168.10.228"
         - name: SERVER_MODE
           value: "no-tls"
         - name: REGISTRATION_TOKEN
@@ -64,8 +68,18 @@ spec:
             secretKeyRef:
               name: regtoken
               key: reg_token
+      - name: jmeter
+        image: justb4/jmeter:latest
+        imagePullPolicy: IfNotPresent
+        command: [ "sleep", "infinity" ]
+        volumeMounts:
+        - name: jmeter-volume
+          mountPath: /jmeter
       imagePullSecrets:
       - name: regcred
+      volumes:
+      - name: jmeter-volume
+        emptyDir: {}
 ---
 apiVersion: v1
 kind: Service

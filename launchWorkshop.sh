@@ -303,16 +303,16 @@ kubectl cp out5.txt $WEBAPP_POD_NAME:/jmeter/out5.txt 2>/dev/null
 
 #Delete test results
 rm out*.txt
-echo "Performance tests executed successfully."
+echo -e "\e[32mPerformance tests executed successfully.\e[0m"
 echo
 
 # Retrieve and print information about how to access the demo.
 WEBAPP_URL="http://$EXTERNAL_IP"
 echo
-echo -e "Access the CRDP Demo App at the URL below (it can take up to 60 seconds for the service to come online):"
+echo -e "\e[32mAccess the CRDP Demo App at the URL below (it can take up to 60 seconds for the service to come online):\e[0m"
 echo $WEBAPP_URL
 echo
-echo -e "Access the CipherTrust Manager at the URL below:"
+echo -e "\e[32mAccess the CipherTrust Manager at the URL below:\e[0m"
 echo $URL
 echo
-echo "Workshop launched successfully."
+echo -e "\e[32mWorkshop launched successfully.\e[0m"

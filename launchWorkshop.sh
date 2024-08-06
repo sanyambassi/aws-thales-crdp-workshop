@@ -257,7 +257,7 @@ echo
 
 # Copy the JMX file to the JMeter container
 echo "Copying JMX file to the JMeter container..."
-kubectl cp $JMX_FILE $WEBAPP_POD_NAME:/jmeter/crdp-jmenter-metrics.jmx -c jmeter 2>/dev/null
+kubectl cp $JMX_FILE $WEBAPP_POD_NAME:/jmeter/crdp-jmeter-metrics.jmx -c jmeter 2>/dev/null
 echo "JMX file copied successfully."
 echo
 
@@ -273,15 +273,15 @@ kubectl exec -it $WEBAPP_POD_NAME -c jmeter -- /bin/bash -c "cd /jmeter && chmod
 
 # Run the JMeter tests sequentially
 echo "Initializing... Takes about 2 minutes"
-kubectl exec -it $WEBAPP_POD_NAME -c jmeter -- /bin/bash -c "cd /jmeter && jmeter -n -t crdp-jmenter-metrics-100.jmx -l results100.jtl > /jmeter/out1.txt"
+kubectl exec -it $WEBAPP_POD_NAME -c jmeter -- /bin/bash -c "cd /jmeter && jmeter -n -t crdp-jmeter-metrics-100.jmx -l results100.jtl > /jmeter/out1.txt"
 echo "10k transactions completed."
-kubectl exec -it $WEBAPP_POD_NAME -c jmeter -- /bin/bash -c "cd /jmeter && jmeter -n -t crdp-jmenter-metrics-200.jmx -l results200.jtl > /jmeter/out2.txt"
+kubectl exec -it $WEBAPP_POD_NAME -c jmeter -- /bin/bash -c "cd /jmeter && jmeter -n -t crdp-jmeter-metrics-200.jmx -l results200.jtl > /jmeter/out2.txt"
 echo "20k transactions completed."
-kubectl exec -it $WEBAPP_POD_NAME -c jmeter -- /bin/bash -c "cd /jmeter && jmeter -n -t crdp-jmenter-metrics-300.jmx -l results300.jtl > /jmeter/out3.txt"
+kubectl exec -it $WEBAPP_POD_NAME -c jmeter -- /bin/bash -c "cd /jmeter && jmeter -n -t crdp-jmeter-metrics-300.jmx -l results300.jtl > /jmeter/out3.txt"
 echo "30k transactions completed."
-kubectl exec -it $WEBAPP_POD_NAME -c jmeter -- /bin/bash -c "cd /jmeter && jmeter -n -t crdp-jmenter-metrics-400.jmx -l results400.jtl > /jmeter/out4.txt"
+kubectl exec -it $WEBAPP_POD_NAME -c jmeter -- /bin/bash -c "cd /jmeter && jmeter -n -t crdp-jmeter-metrics-400.jmx -l results400.jtl > /jmeter/out4.txt"
 echo "40k transactions completed."
-kubectl exec -it $WEBAPP_POD_NAME -c jmeter -- /bin/bash -c "cd /jmeter && jmeter -n -t crdp-jmenter-metrics-500.jmx -l results500.jtl > /jmeter/out5.txt"
+kubectl exec -it $WEBAPP_POD_NAME -c jmeter -- /bin/bash -c "cd /jmeter && jmeter -n -t crdp-jmeter-metrics-500.jmx -l results500.jtl > /jmeter/out5.txt"
 echo "50k transactions completed."
 
 # Copy the result files back to the local machine

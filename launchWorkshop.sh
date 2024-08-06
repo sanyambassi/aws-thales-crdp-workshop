@@ -19,7 +19,7 @@ STACK_NAME="aws-thales-crdp-workshop"
 TEMPLATE_FILE="$PWD/cloud_formation_template.yaml"
 REGION="us-east-1"
 K8_DEPLOYMENT_FILE="$PWD/k8-deployment.yaml" 
-JMX_FILE="$PWD/crdp-jmenter-metrics.jmx"
+JMX_FILE="$PWD/crdp-jmeter-metrics.jmx"
 JMX_SCRIPT="$PWD/create_jmx_files.sh"
 
 echo

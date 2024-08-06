@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define the base JMX file and the output directory
-BASE_JMX_FILE="/jmeter/crdp-jmenter-metrics.jmx"
+BASE_JMX_FILE="/jmeter/crdp-jmeter-metrics.jmx"
 OUTPUT_DIR="/jmeter"
 
 # Define the thread group values
@@ -10,7 +10,7 @@ THREAD_GROUP_VALUES=(100 200 300 400 500)
 # Iterate over the thread group values and create a new JMX file for each
 for i in "${!THREAD_GROUP_VALUES[@]}"; do
     THREAD_GROUP_VALUE=${THREAD_GROUP_VALUES[$i]}
-    OUTPUT_JMX_FILE="${OUTPUT_DIR}/crdp-jmenter-metrics-${THREAD_GROUP_VALUE}.jmx"
+    OUTPUT_JMX_FILE="${OUTPUT_DIR}/crdp-jmeter-metrics-${THREAD_GROUP_VALUE}.jmx"
           
     # Copy the base JMX file and replace the thread group value
     cp "$BASE_JMX_FILE" "$OUTPUT_JMX_FILE"

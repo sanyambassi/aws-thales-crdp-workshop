@@ -29,7 +29,6 @@ Parameters:
 
   KeyPairName:
     Type: String
-    Default: ksadmin_cm
     Description: The name of the existing key pair to use
 
 Metadata:

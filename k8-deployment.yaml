@@ -37,10 +37,6 @@ spec:
           value: "localhost"
         - name: CRDP_PORT
           value: "8090"
-        - name: REMOTE_CRDP_HOST
-          value: "srvc"
-        - name: REMOTE_CRDP_PORT
-          value: "8090"
       - name: crdp-container
         image: thalesciphertrust/ciphertrust-restful-data-protection:latest
         imagePullPolicy: IfNotPresent

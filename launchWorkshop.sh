@@ -5,9 +5,9 @@ echo
 read -p "Enter the name for the CloudFormation stack to create: " STACK_NAME
 echo
 
-# Prompt user for key pair name
-read -p "Enter the name for the AWS key pair to create for this workshop: " KEY_PAIR_NAME
-echo
+# Set KEY_PAIR_NAME based on STACK_NAME
+KEY_PAIR_NAME="${STACK_NAME}-keypair"
+echo 
 
 # Prompt user for password and confirm
 while true; do

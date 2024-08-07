@@ -1,5 +1,12 @@
 #!/bin/bash
 echo
+
+# Prompt user for CloudFormation stack name
+read -p "Enter the name for the CloudFormation stack to create: " STACK_NAME
+
+# Prompt user for key pair name
+read -p "Enter the name for the AWS key pair to create for this workshop: " KEY_PAIR_NAME
+
 # Prompt user for password and confirm
 while true; do
     read -sp "Create/Enter a new password for CipherTrust Manager's admin user: " PASSWORD
@@ -15,7 +22,6 @@ echo
 # Define common variables
 USER="admin"
 NO_SSL_VERIFY="--nosslverify"
-STACK_NAME="aws-thales-crdp-workshop"
 TEMPLATE_FILE="$PWD/cloud_formation_template.yaml"
 REGION="us-east-1"
 K8_DEPLOYMENT_FILE="$PWD/k8-deployment.yaml" 
@@ -25,14 +31,14 @@ JMX_SCRIPT="$PWD/create_jmx_files.sh"
 echo
 
 # Create a key pair in AWS in us-east-1
-echo "Creating a keypair named ksadmin_cm in AWS us-east-1..."
-aws ec2 create-key-pair --key-name ksadmin_cm --query 'KeyMaterial' --region us-east-1 --output text > ksadmin_cm.pem
-echo "Created a keypair named ksadmin_cm in AWS us-east-1, and saved in the current working directory."
+echo "Creating a keypair named $KEY_PAIR_NAME in AWS us-east-1..."
+aws ec2 create-key-pair --key-name $KEY_PAIR_NAME --query 'KeyMaterial' --region us-east-1 --output text > $KEY_PAIR_NAME.pem
+echo "Created a keypair named $KEY_PAIR_NAME in AWS us-east-1, and saved in the current working directory."
 echo
 
 # Create CloudFormation stack
 echo "Creating CloudFormation stack..."
-aws cloudformation create-stack --stack-name $STACK_NAME --template-body file://$TEMPLATE_FILE --capabilities CAPABILITY_IAM CAPABILITY_NAMED_IAM --region $REGION
+aws cloudformation create-stack --stack-name $STACK_NAME --template-body file://$TEMPLATE_FILE --parameters ParameterKey=KeyPairName,ParameterValue=$KEY_PAIR_NAME --capabilities CAPABILITY_IAM CAPABILITY_NAMED_IAM --region $REGION
 echo
 # Wait for stack to be created
 echo "Waiting for stack to be created..."

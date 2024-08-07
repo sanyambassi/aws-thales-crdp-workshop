@@ -3,9 +3,11 @@ echo
 
 # Prompt user for CloudFormation stack name
 read -p "Enter the name for the CloudFormation stack to create: " STACK_NAME
+echo
 
 # Prompt user for key pair name
 read -p "Enter the name for the AWS key pair to create for this workshop: " KEY_PAIR_NAME
+echo
 
 # Prompt user for password and confirm
 while true; do

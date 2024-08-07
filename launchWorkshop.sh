@@ -253,7 +253,7 @@ while true; do
     if [ "$CRDP_READY" = "true" ] && [ "$JMETER_READY" = "true" ]; then
         break
     fi
-    echo "Waiting for crdp-container and jmeter to be ready..."
+    echo "Waiting for crdp-container and jmeter containers to be ready..."
     sleep 2
 done
 echo "Ready..."

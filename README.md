@@ -95,7 +95,7 @@ The script waits for the external IP address to be assigned to the Kubernetes se
 
 If you encounter any issues while running the script, check the following:
 
-1. Ensure your AWS CLI is configured correctly.
+1. Ensure your AWS CLI is configured correctly. Verify your configured IAM user with this command - "`aws sts get-caller-identity`"
 2. Verify that `kubectl` is installed and configured.
 3. Make sure the `jq` tool is installed on your system.
 4. Check the CloudFormation and Kubernetes logs for any errors.

@@ -6,16 +6,15 @@ This repository contains a bash script to automate the deployment and configurat
 
 The script performs the following actions:
 
-1. Creates a keypair named "ksadmin_cm" in AWS in us-east-1.
-2. Creates a CloudFormation stack based on the provided template.
-3. Retrieves the public and private IP addresses of the CipherTrust Manager from the CloudFormation stack.
-4. Updates the Kubernetes deployment file with the retrieved private IP address.
-5. Downloads and configures the `ksctl` binaries.
-6. Changes the default password for the CipherTrust Manager admin user to a user supplied password.
-7. Activates the trial license on CipherTrust manager.
-8. Creates required resources for CRDP, including user sets, access policies and protection policies, on the CipherTrust manager.
-9. Generates and applies Kubernetes configurations, secrets, and resources.
-10. Prints the access URLs for the CRDP Demo App and the CipherTrust Manager.
+1. Creates a CloudFormation stack based on the provided template (`cloud_formation_template.yaml`).
+2. Retrieves the public and private IP addresses of the CipherTrust Manager from the CloudFormation stack.
+3. Updates the Kubernetes deployment file with the retrieved private IP address.
+4. Downloads and configures the `ksctl` binaries.
+5. Changes the default password for the CipherTrust Manager admin user to a user supplied password.
+6. Activates the trial license on CipherTrust manager.
+7. Creates required resources for CRDP, including user sets, access policies and protection policies, on the CipherTrust manager.
+8. Generates and applies Kubernetes configurations, secrets, and resources.
+9. Prints the access URLs for the CRDP Demo App and the CipherTrust Manager.
 
 ## Prerequisites
 

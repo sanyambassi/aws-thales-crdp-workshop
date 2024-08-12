@@ -2,7 +2,7 @@
 echo
 
 # Prompt user for CloudFormation stack name
-read -p "Enter the name for the CloudFormation stack to create: " STACK_NAME
+read -p "Enter a name for the CloudFormation stack to create: " STACK_NAME
 echo
 
 # Set KEY_PAIR_NAME based on STACK_NAME

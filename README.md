@@ -48,6 +48,10 @@ Before running the script, ensure you have the following:
 
 ## Script Breakdown
 
+### Prompt for CloudFormation Stack Name
+
+The script prompts the user to enter a name for the CloudFormation stack. 
+
 ### Password Prompt
 
 The script prompts the user to enter and confirm the password for the CipherTrust Manager admin user.

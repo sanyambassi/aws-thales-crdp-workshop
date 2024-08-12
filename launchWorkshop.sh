@@ -5,10 +5,6 @@ echo
 read -p "Enter a name for the CloudFormation stack to create: " STACK_NAME
 echo
 
-# Set KEY_PAIR_NAME based on STACK_NAME
-KEY_PAIR_NAME="${STACK_NAME}-keypair"
-echo 
-
 # Prompt user for password and confirm
 while true; do
     read -sp "Create/Enter a new password for CipherTrust Manager's admin user: " PASSWORD
@@ -29,7 +25,7 @@ REGION="us-east-1"
 K8_DEPLOYMENT_FILE="$PWD/k8-deployment.yaml" 
 JMX_FILE="$PWD/crdp-jmeter-metrics.jmx"
 JMX_SCRIPT="$PWD/create_jmx_files.sh"
-
+KEY_PAIR_NAME="${STACK_NAME}-keypair"
 echo
 
 # Create a key pair in AWS in us-east-1

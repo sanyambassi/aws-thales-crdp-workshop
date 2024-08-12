@@ -24,7 +24,7 @@ Before running the script, ensure you have the following:
 1. AWS CLI configured with the appropriate permissions. For required IAM permissions, see `workshop_user_iam_policy.json`.
 2. Kubernetes CLI (`kubectl`) installed and configured.
 3. `jq` command-line JSON processor installed.
-4. 'git' CLI installed.
+4. `git` CLI installed.
 
 ## Usage
 

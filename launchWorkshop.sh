@@ -1,8 +1,26 @@
 #!/bin/bash
 echo
 
-# Prompt user for CloudFormation stack name
-read -p "Enter a name for the CloudFormation stack to create: " STACK_NAME
+# Define REGION at the beginning for consistency
+REGION="us-east-1"
+
+# Function to check if a CloudFormation stack exists
+check_stack_exists() {
+    aws cloudformation describe-stacks --stack-name "$1" --region "$REGION" > /dev/null 2>&1
+}
+
+# Prompt user for CloudFormation stack name and check if it already exists
+while true; do
+    read -p "Enter a name for the CloudFormation stack to create: " STACK_NAME
+    echo
+    
+    if check_stack_exists "$STACK_NAME"; then
+        echo "A stack with the name '$STACK_NAME' already exists. Please enter a different name."
+    else
+        break
+    fi
+done
+echo "Stack name '$STACK_NAME' is available."
 echo
 
 # Prompt user for password and confirm
@@ -21,7 +39,6 @@ echo
 USER="admin"
 NO_SSL_VERIFY="--nosslverify"
 TEMPLATE_FILE="$PWD/cloud_formation_template.yaml"
-REGION="us-east-1"
 K8_DEPLOYMENT_FILE="$PWD/k8-deployment.yaml" 
 JMX_FILE="$PWD/crdp-jmeter-metrics.jmx"
 JMX_SCRIPT="$PWD/create_jmx_files.sh"
@@ -29,9 +46,9 @@ KEY_PAIR_NAME="${STACK_NAME}-keypair"
 echo
 
 # Create a key pair in AWS in us-east-1
-echo "Creating a keypair named $KEY_PAIR_NAME in AWS us-east-1..."
-aws ec2 create-key-pair --key-name $KEY_PAIR_NAME --query 'KeyMaterial' --region us-east-1 --output text > $KEY_PAIR_NAME.pem
-echo "Created a keypair named $KEY_PAIR_NAME in AWS us-east-1, and saved in the current working directory."
+echo "Creating a keypair named $KEY_PAIR_NAME in AWS $REGION..."
+aws ec2 create-key-pair --key-name $KEY_PAIR_NAME --query 'KeyMaterial' --region $REGION --output text > $KEY_PAIR_NAME.pem
+echo "Created a keypair named $KEY_PAIR_NAME in AWS $REGION, and saved in the current working directory."
 echo
 
 # Create CloudFormation stack

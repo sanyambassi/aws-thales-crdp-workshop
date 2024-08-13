@@ -1,5 +1,4 @@
 #!/bin/bash
-echo
 
 # Define REGION at the beginning for consistency
 REGION="us-east-1"
@@ -11,6 +10,7 @@ check_stack_exists() {
 
 # Prompt user for CloudFormation stack name and check if it already exists
 while true; do
+    echo
     read -p "Enter a name for the CloudFormation stack to create: " STACK_NAME
     echo
     

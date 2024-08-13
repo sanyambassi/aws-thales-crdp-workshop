@@ -20,7 +20,7 @@ while true; do
         break
     fi
 done
-echo "Stack name '$STACK_NAME' is available."
+echo "Stack name '$STACK_NAME' will be created"
 echo
 
 # Prompt user for password and confirm

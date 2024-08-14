@@ -30,7 +30,6 @@ check_prerequisites() {
 
 # Check prerequisites before proceeding
 check_prerequisites
-echo
 
 # Define REGION at the beginning for CloudFormation stack check
 REGION="us-east-1"

@@ -33,7 +33,7 @@ Before running the script, ensure you have the following:
     cd aws-thales-crdp-workshop
     ```
 
-2. Ensure the `cloud_formation_template.yaml`, `k8-deployment.yaml` and other files are present in the working directory.
+2. Ensure `cloud_formation_template.yaml`, `k8-deployment.yaml` and other files are present in the working directory.
 
 3. Make the script executable:
     ```sh

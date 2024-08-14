@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Define REGION at the beginning for consistency
+# Define REGION at the beginning for CloudFormation stack check
 REGION="us-east-1"
 
 # Function to check if a CloudFormation stack exists
@@ -23,7 +23,7 @@ done
 echo "Stack name '$STACK_NAME' will be created"
 echo
 
-# Prompt user for password and confirm
+# Prompt user for C admin password and confirm
 while true; do
     read -sp "Create/Enter a new password for CipherTrust Manager's admin user: " PASSWORD
     echo

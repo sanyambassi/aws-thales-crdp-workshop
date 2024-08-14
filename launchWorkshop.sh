@@ -1,5 +1,37 @@
 #!/bin/bash
 
+echo
+
+# Function to check if a command exists
+command_exists() {
+    command -v "$1" >/dev/null 2>&1
+}
+
+# Check for required prerequisites
+check_prerequisites() {
+    local missing=()
+    for cmd in aws jq wget kubectl unzip; do
+        if ! command_exists "$cmd"; then
+            missing+=("$cmd")
+        fi
+    done
+
+    if [ ${#missing[@]} -ne 0 ]; then
+        echo "The following prerequisites are missing:"
+        for cmd in "${missing[@]}"; do
+            echo "- $cmd"
+        done
+        echo "Please install the missing prerequisites and try again."
+        exit 1
+    else
+        echo "All prerequisites are installed. Proceeding.."
+    fi
+}
+
+# Check prerequisites before proceeding
+check_prerequisites
+echo
+
 # Define REGION at the beginning for CloudFormation stack check
 REGION="us-east-1"
 

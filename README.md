@@ -83,9 +83,9 @@ The script changes the default password for the CipherTrust Manager admin user t
 
 The script retrieves and activates a trial license for the CipherTrust Manager.
 
-### Create Character Sets and User Sets
+### Create CRDP resources on CipherTrust Manager
 
-The script creates necessary character sets and user sets on the CipherTrust Manager to be used with CRDP.
+The script creates necessary resources such as protection policies, application, character sets, etc on the CipherTrust Manager to be used with CRDP.
 
 ### Apply Kubernetes Configurations and Resources
 
@@ -93,7 +93,7 @@ The script updates the Kubernetes configuration, creates a secret with the regis
 
 ### Retrieve External IP Address
 
-The script waits for the external IP address to be assigned to the Kubernetes service and prints the access URLs for the CRDP Demo App and the CipherTrust Manager.
+The script waits for the external IP address to be assigned to the CRDP demo app Kubernetes service and prints the access URLs for the CRDP Demo App and the CipherTrust Manager.
 
 ## Troubleshooting
 

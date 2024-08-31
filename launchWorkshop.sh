@@ -70,7 +70,8 @@ echo
 USER="admin"
 NO_SSL_VERIFY="--nosslverify"
 TEMPLATE_FILE="$PWD/cloud_formation_template.yaml"
-K8_DEPLOYMENT_FILE="$PWD/k8-deployment.yaml" 
+K8_WEBAPP_FILE="$PWD/k8s-demo-app.yaml" 
+K8_CRDP_FILE="$PWD/crdp-pod-service.yaml" 
 JMX_FILE="$PWD/crdp-jmeter-metrics.jmx"
 JMX_SCRIPT="$PWD/create_jmx_files.sh"
 KEY_PAIR_NAME="${STACK_NAME}-keypair"
@@ -105,12 +106,12 @@ echo "Private IP: $PRIVATE_IP"
 echo
 
 # Update k8-deployment.yaml with the private IP
-echo "Updating k8 deployment manifest with the private IP..."
-sed -i "/name: KEY_MANAGER_HOST/{n;s/value:.*/value: \"$PRIVATE_IP\"/}" $K8_DEPLOYMENT_FILE
+echo "Updating k8 crdp pod manifest with the private IP..."
+sed -i "/name: KEY_MANAGER_HOST/{n;s/value:.*/value: \"$PRIVATE_IP\"/}" $K8_CRDP_FILE
 echo
 # Check if the file has been updated
-echo "Verifying if the deployment manifest has been updated..."
-grep -A 1 "name: KEY_MANAGER_HOST" $K8_DEPLOYMENT_FILE
+echo "Verifying if the crdp pod manifest has been updated..."
+grep -A 1 "name: KEY_MANAGER_HOST" $K8_CRDP_FILE
 echo
 
 # Define the URL with the retrieved public IP
@@ -269,10 +270,12 @@ echo
 echo "Creating Kubernetes resources..."
 kubectl apply -f k8-configmap.yaml
 kubectl apply -f regcred.yaml
-kubectl apply -f $K8_DEPLOYMENT_FILE
+kubectl apply -f $K8_WEBAPP_FILE
+kubectl apply -f $K8_CRDP_FILE
 echo "Kubernetes resources created successfully."
 echo
 echo "Getting Kubernetes resources."
+sleep 5
 kubectl get all
 echo
 
@@ -286,7 +289,7 @@ while true; do
     echo "Waiting for the external IP to be assigned..."
     sleep 2
 done
-echo "External IP assigned to the webapp-service..."
+echo "External IP $EXTERNAL_IP assigned to the webapp-service..."
 echo
 
 # Wait for crdp-container and jmeter to be ready

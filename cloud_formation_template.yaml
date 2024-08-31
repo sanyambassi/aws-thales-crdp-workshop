@@ -366,7 +366,7 @@ Resources:
       ImageId: ami-038edf9f09cdcfc66 # Replace with a valid AMI ID in your region
       Tags:
         - Key: Name
-          Value: CipherTrustManager
+          Value: !Sub '${AWS::StackName}-CipherTrustManager'
 
 Outputs:
   SubnetIds:

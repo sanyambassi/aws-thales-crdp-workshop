@@ -295,7 +295,7 @@ echo
 # Wait for crdp-container and jmeter to be ready
 echo "Waiting for crdp-container and jmeter containers to be ready..."
 while true; do
-    CRDP_READY=$(kubectl get pods -l app=webapp -o jsonpath='{.items[0].status.containerStatuses[?(@.name=="crdp-container")].ready}')
+    CRDP_READY=$(kubectl get pods -l run=crdp -o jsonpath='{.items[0].status.containerStatuses[?(@.name=="crdp-container")].ready}')
     JMETER_READY=$(kubectl get pods -l app=webapp -o jsonpath='{.items[0].status.containerStatuses[?(@.name=="jmeter")].ready}')
     if [ "$CRDP_READY" = "true" ] && [ "$JMETER_READY" = "true" ]; then
         break

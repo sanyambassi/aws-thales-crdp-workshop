@@ -25,11 +25,14 @@ spec:
         periodSeconds: 10
       env:
         - name: KEY_MANAGER_HOST
-          value: "192.168.59.119"
+          value: 
         - name: SERVER_MODE
           value: "no-tls"
         - name: REGISTRATION_TOKEN
-          value: "QgrryKj059o3BOwz8ICIgLNGs4eVMQuV32MEJaPDiX2D0u8rjMDuFZw7llYa7EMe"
+          valueFrom:
+            secretKeyRef:
+              name: regtoken
+              key: reg_token
 ---
 apiVersion: v1
 kind: Service

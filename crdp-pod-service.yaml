@@ -34,7 +34,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: srvc
+  name: crdp-srvc
   labels:
     run: crdp
 spec:
